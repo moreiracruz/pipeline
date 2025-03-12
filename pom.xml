@@ -12,7 +12,7 @@
 
 	<groupId>br.com.moreiracruz</groupId>
 	<artifactId>pipeline</artifactId>
-	<version>1.1.0</version>
+	<version>1.0.8-SNAPSHOT</version>
 	<name>pipeline</name>
 	<description>Pipeline</description>
 
@@ -120,7 +120,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-scm-plugin</artifactId>
-						<version>3.0.0</version>
+						<version>2.1.0</version>
 						<configuration>
 							<connectionType>developerConnection</connectionType>
 							<developerConnection>scm:git:https://github.com/${git-user}/${git-repository}.git</developerConnection>
@@ -145,21 +145,20 @@
 						</configuration>
 					</plugin>
 					<plugin>
-						<groupId>com.mycila</groupId>
+						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>license-maven-plugin</artifactId>
-						<version>4.5</version>
+						<version>2.5.0</version>
 						<configuration>
-							<header>LICENSE.txt</header>
-							<includes>
-								<include>src/main/java/**</include>
-							</includes>
-							<strictCheck>true</strictCheck>
+							<licenseName>LICENSE</licenseName>
+							<licenseResolver>${project.basedir}</licenseResolver>
 						</configuration>
 						<executions>
 							<execution>
+								<id>first</id>
 								<goals>
-									<goal>check</goal>
+									<goal>update-file-header</goal>
 								</goals>
+								<phase>process-sources</phase>
 							</execution>
 						</executions>
 					</plugin>
