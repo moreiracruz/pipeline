@@ -120,6 +120,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-scm-plugin</artifactId>
+						<version>3.0.0</version>
 						<configuration>
 							<connectionType>developerConnection</connectionType>
 							<developerConnection>scm:git:https://github.com/${git-user}/${git-repository}.git</developerConnection>
