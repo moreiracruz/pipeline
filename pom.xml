@@ -24,7 +24,7 @@
 
 	<groupId>br.com.moreiracruz</groupId>
 	<artifactId>pipeline</artifactId>
-	<version>0.0.1.1741764568.1741764822-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<name>pipeline</name>
 	<description>Pipeline</description>
 
@@ -108,6 +108,17 @@
 			<id>release</id>
 			<build>
 				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-release-plugin</artifactId>
+						<version>3.0.1</version>
+						<configuration>
+							<autoVersionSubmodules>true</autoVersionSubmodules>
+							<useReleaseProfile>false</useReleaseProfile>
+							<releaseProfiles>release</releaseProfiles>
+							<goals>deploy</goals>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-scm-plugin</artifactId>

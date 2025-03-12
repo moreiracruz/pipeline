@@ -35,8 +35,8 @@ jobs:
         run: mvn release:prepare -Dmaven.clean.failOnError=false -DreleaseVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//') -DdevelopmentVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//').$(date +%s)-SNAPSHOT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release Perform
-        run: mvn release:perform
+      - name: Release Prepare
+        run: mvn release:prepare -Dmaven.clean.failOnError=false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image (latest)
