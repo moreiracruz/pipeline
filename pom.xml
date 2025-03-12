@@ -3,18 +3,6 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<properties>
-		<java.version>17</java.version>
-		<project.groupId>br.com.pawloandre.users</project.groupId>
-		<project.artifactId>users</project.artifactId>
-		<project.version>1.0.0-SNAPSHOT</project.version>
-		<git-user>moreiracruz</git-user>
-		<git-repository>pipeline</git-repository>
-		<docker.image.prefix>${git-user}</docker.image.prefix>
-		<project.build.finalName>${project.artifactId}-${project.version}</project.build.finalName>
-	</properties>
-
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -24,11 +12,21 @@
 
 	<groupId>br.com.moreiracruz</groupId>
 	<artifactId>pipeline</artifactId>
-	<version>1.0.0.1741765471-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>pipeline</name>
 	<description>Pipeline</description>
 
 	<url>https://www.moreiracruz.com.br</url>
+
+	<properties>
+		<java.version>17</java.version>
+		<project.groupId>br.com.pawloandre.users</project.groupId>
+		<project.artifactId>pipelina</project.artifactId>
+		<git-user>moreiracruz</git-user>
+		<git-repository>pipeline</git-repository>
+		<docker.image.prefix>${git-user}</docker.image.prefix>
+		<project.build.finalName>${project.artifactId}-${version}</project.build.finalName>
+	</properties>
 
 	<licenses>
 		<license>
