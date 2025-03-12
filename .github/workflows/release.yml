@@ -27,10 +27,6 @@ jobs:
         run: |
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git config --global user.name "${{ github.actor }}"
-      - name: Setup SSH deploy key
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
       - name: Release Prepare
         run: mvn release:prepare -Dmaven.clean.failOnError=false -DreleaseVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//') -DdevelopmentVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//').$(date +%s)-SNAPSHOT
         env:
@@ -48,6 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Increment version and merge to main
         run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/moreiracruz/pipeline.git
           git checkout main
           mvn versions:set -DnewVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//' | awk -F. '{print $1"."$(($2+1))".0-SNAPSHOT"}')
           git commit -am "Increment version to $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
