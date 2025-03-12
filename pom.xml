@@ -9,7 +9,7 @@
 		<project.artifactId>users</project.artifactId>
 		<project.version>1.0.0-SNAPSHOT</project.version>
 		<git-user>moreiracruz</git-user>
-		<git-repository>users</git-repository>
+		<git-repository>pipeline</git-repository>
 		<docker.image.prefix>${git-user}</docker.image.prefix>
 		<project.build.finalName>${project.artifactId}-${project.version}</project.build.finalName>
 	</properties>
@@ -57,8 +57,7 @@
 
 	<scm>
 		<connection>scm:git:git://github.com/${git-user}/${git-repository}.git</connection>
-		<developerConnection>
-			scm:git:ssh://github.com/${git-user}/${git-repository}.git</developerConnection>
+		<developerConnection>scm:git:https://github.com/${git-user}/${git-repository}.git</developerConnection>
 		<tag>0.0.2</tag>
 		<url>https://github.com/${git-user}/${git-repository}</url>
 	</scm>
@@ -110,26 +109,13 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>com.spotify</groupId>
-						<artifactId>dockerfile-maven-plugin</artifactId>
-						<version>1.4.13</version>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-scm-plugin</artifactId>
 						<configuration>
-							<repository>${docker.image.prefix}/${project.artifactId}</repository>
-							<tag>${project.version}</tag>
-							<buildArgs>
-								<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-							</buildArgs>
+							<connectionType>developerConnection</connectionType>
+							<developerConnection>scm:git:https://github.com/${git-user}/${git-repository}.git</developerConnection>
+							<tagBase>scm:git:https://github.com/${git-user}/${git-repository}.git/tags</tagBase>
 						</configuration>
-						<executions>
-							<execution>
-								<id>default</id>
-								<phase>install</phase>
-								<goals>
-									<goal>build</goal>
-									<goal>push</goal>
-								</goals>
-							</execution>
-						</executions>
 					</plugin>
 				</plugins>
 			</build>
