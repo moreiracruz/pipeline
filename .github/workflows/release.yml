@@ -31,8 +31,6 @@ jobs:
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-      - name: List .m2 directory
-        run: ls -la ~/.m2
       - name: Release Prepare
         run: mvn release:prepare -Dmaven.clean.failOnError=false
         env:
@@ -58,5 +56,7 @@ jobs:
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+      - name: List .m2 directory
+        run: ls -la ~/.m2
       - name: Clean Maven repository
         run: rm -rf ~/.m2/repository
