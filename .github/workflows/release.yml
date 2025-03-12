@@ -32,7 +32,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
       - name: Release Prepare
-        run: mvn release:prepare -DreleaseVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//') -DdevelopmentVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//').$(date +%s)-SNAPSHOT
+        run: mvn release:prepare -Dmaven.clean.failOnError=false -DreleaseVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//') -DdevelopmentVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//').$(date +%s)-SNAPSHOT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release Perform
