@@ -34,11 +34,11 @@ jobs:
       - name: Release Prepare
         run: mvn release:prepare -Dmaven.clean.failOnError=false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MAVEN_TOKEN }}
       - name: Release Perform
         run: mvn release:perform -Dmaven.clean.failOnError=false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MAVEN_TOKEN }}
       - name: Build and push Docker image (latest)
         run: |
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
           docker build --build-arg FINAL_NAME=$FINAL_NAME -t ghcr.io/moreiracruz/pipeline:latest .
           docker push ghcr.io/moreiracruz/pipeline:latest
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MAVEN_TOKEN }}
       - name: Increment version and merge to main
         run: |
           git checkout main
@@ -55,6 +55,6 @@ jobs:
           git commit -am "Increment version to $(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
           git push origin main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MAVEN_TOKEN }}
       - name: Clean Maven repository
         run: rm -rf ~/.m2/repository
