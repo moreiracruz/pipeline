@@ -150,7 +150,7 @@
 						<version>2.5.0</version>
 						<configuration>
 							<licenseName>LICENSE</licenseName>
-							<licenseResolver>${project.basedir}</licenseResolver>
+							<licenseResolver>${project.baseUri}/src/main/resources</licenseResolver>
 							<organizationName>Moreira Cruz</organizationName>
 							<inceptionYear>2025</inceptionYear>
 						</configuration>
