@@ -12,7 +12,7 @@
 
 	<groupId>br.com.moreiracruz</groupId>
 	<artifactId>pipeline</artifactId>
-	<version>1.0.4</version>
+	<version>1.0.5-SNAPSHOT</version>
 	<name>pipeline</name>
 	<description>Pipeline</description>
 
@@ -57,7 +57,7 @@
 		<connection>scm:git:git://github.com/${git-user}/${git-repository}.git</connection>
 		<developerConnection>scm:git:https://github.com/${git-user}/${git-repository}.git</developerConnection>
 		<url>https://github.com/${git-user}/${git-repository}</url>
-	  <tag>pipeline-1.0.4</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<dependencies>
