@@ -21,8 +21,12 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          server-id: github # Configura o ID do servidor Maven para autenticação
-          settings-path: ${{ github.workspace }} # Configura o caminho para o arquivo settings.xml
+          server-id: github
+          settings-path: ${{ github.workspace }}
+      - name: Configure Git user
+        run: |
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
       - name: Release Prepare
         run: mvn release:prepare -DreleaseVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//') -DdevelopmentVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//').$(date +%s)-SNAPSHOT
         env:
