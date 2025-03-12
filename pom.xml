@@ -24,7 +24,7 @@
 
 	<groupId>br.com.moreiracruz</groupId>
 	<artifactId>pipeline</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>pipeline</name>
 	<description>Pipeline</description>
 
