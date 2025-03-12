@@ -1,0 +1,14 @@
+// src/main/java/br/com/moreiracruz/pipeline/controller/HelloController.java
+package br.com.moreiracruz.pipeline.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello, Pipeline!";
+    }
+}
