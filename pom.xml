@@ -151,6 +151,8 @@
 						<configuration>
 							<licenseName>LICENSE</licenseName>
 							<licenseResolver>${project.basedir}</licenseResolver>
+							<organizationName>Moreira Cruz</organizationName>
+							<inceptionYear>2025</inceptionYear>
 						</configuration>
 						<executions>
 							<execution>
