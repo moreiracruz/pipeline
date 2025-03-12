@@ -25,7 +25,7 @@
 		<git-user>moreiracruz</git-user>
 		<git-repository>pipeline</git-repository>
 		<docker.image.prefix>${git-user}</docker.image.prefix>
-		<project.build.finalName>${project.artifactId}-${version}</project.build.finalName>
+		<project.build.finalName>${project.artifactId}-${project.version}</project.build.finalName>
 	</properties>
 
 	<licenses>

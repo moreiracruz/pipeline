@@ -32,17 +32,19 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
       - name: Release Prepare
-        run: mvn release:prepare -Dmaven.clean.failOnError=false -DreleaseVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//') -DdevelopmentVersion=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//').$(date +%s)-SNAPSHOT
+        run: mvn release:prepare -Dmaven.clean.failOnError=false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release Prepare
-        run: mvn release:prepare -Dmaven.clean.failOnError=false
+      - name: Release Perform
+        run: mvn release:perform -Dmaven.clean.failOnError=false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image (latest)
         run: |
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-          docker build -t ghcr.io/moreiracruz/pipeline:latest .
+          mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout > final_name.txt
+          FINAL_NAME=$(cat final_name.txt)
+          docker build --build-arg FINAL_NAME=$FINAL_NAME -t ghcr.io/moreiracruz/pipeline:latest .
           docker push ghcr.io/moreiracruz/pipeline:latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
