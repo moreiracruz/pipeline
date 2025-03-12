@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 		<project.groupId>br.com.pawloandre.users</project.groupId>
 		<project.artifactId>users</project.artifactId>
 		<project.version>1.0.0-SNAPSHOT</project.version>
