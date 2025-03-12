@@ -56,3 +56,5 @@ jobs:
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Clean Maven repository
+        run: rm -rf ~/.m2/repository
