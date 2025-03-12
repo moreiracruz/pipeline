@@ -97,7 +97,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub OWNER Apache Maven Packages</name>
-			<url>https://maven.pkg.github.com/moreiracruz/github</url>
+			<url>https://maven.pkg.github.com/moreiracruz/pipeline</url>
 		</repository>
 	</distributionManagement>
 
